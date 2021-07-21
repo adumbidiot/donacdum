@@ -1,0 +1,39 @@
+[package]
+name = "donacdum"
+version = "0.0.0"
+edition = "2018"
+authors = [ "adumbidiot <nathaniel.daniel23@outlook.com>" ]
+
+[dependencies]
+anyhow = "1.0.42"
+bitflags = "1.2.1"
+samplerate = "0.2.4"
+skylight = { git = "https://github.com/adumbidiot/skylight-rs", features = [ "objbase" ] }
+symphonia = { version = "0.3.0", default-features = false, features = [ "mp3" ] }
+winapi = { version = "0.3.9", features = [ "synchapi", "handleapi" ] }
+win-core-audio = { path = "./lib/win-core-audio" }
+
+[workspace]
+members = [ "lib/win-core-audio" ]
+
+[profile.dev.package.symphonia]
+opt-level = 3
+
+[profile.dev.package.symphonia-core]
+opt-level = 3
+
+[profile.dev.package.symphonia-bundle-mp3]
+opt-level = 3
+
+[profile.dev.package.samplerate]
+opt-level = 3
+
+[profile.dev.package.libsamplerate-sys]
+opt-level = 3
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+
+
